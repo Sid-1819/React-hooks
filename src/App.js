@@ -1,25 +1,101 @@
-import logo from './logo.svg';
+
+import { useReducer, useState , useEffect, useRef } from 'react';
+import axios from "axios";
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+//useState
+// const App = () =>{
+//   const [count, setCount] = useState(0);
+
+
+//   return (
+//     <>
+//     {count}
+//     <button onClick={() => setCount(count + 1)}>Increment</button>
+//     <button onClick={() => setCount(count - 1)}>Decrement</button>
+//     </>
+//   );
+
+// }
+
+//useReducer
+// const reducer = (state,action) => {
+//   switch(action.type){
+//     case 'increment':
+//       return {count: state.count + 1, showText: state.showText}
+//     case 'decrement':
+//       return {count: state.count - 1, showText: state.showText}
+//     case 'toggle':
+//       return {count: state.count, showText: !state.showText}
+//     default:
+//       return state;
+//   }
+// }
+
+
+// const App = () =>{
+//   const [count, dispatch] = useReducer(reducer, {
+//     count:0, showText: true
+//   })
+
+//   return (
+//     <>
+//     {count.showText && <h1>{count.count}</h1>}
+//     <button onClick={() => dispatch({type: 'increment'})}>Increment</button>
+//     <button onClick={() => dispatch({type: 'decrement'})}>Decrement</button>
+//     <button onClick={() => dispatch({type: 'toggle'})}>Toggle</button>
+//     </>
+//   );
+
+// }
+
+//useEffect
+
+// function App(){
+
+//   const [data, setData] = useState("")
+//   const [count, setCount] = useState(0)
+
+//  useEffect (() =>{
+//   axios.get('https://jsonplaceholder.typicode.com/comments')
+//   .then((response) => {
+    
+//     setData(response.data[0].email)
+//     console.log("API was called")
+//   })
+
+// },[count])
+
+
+//   return(
+//     <>
+//     <h1>UseEffect {data}</h1>
+//     <h1>{count}</h1>
+//     <button onClick={() => setCount(count + 1)}>Increment</button>
+//     </>
+//   )
+ 
+// }
+
+function App(){
+
+  const inputRef = useRef(null);
+
+
+  const onClick = () => {
+    inputRef.current.focus();
+    inputRef.current.value = "";
+  };
+
+  return(
+   
+    <div>
+      <h1>Hello</h1>
+      <input type="text" placeholder="Enter your name" ref={inputRef}/>
+      <button onClick={onClick}>Submit</button>
     </div>
-  );
+    
+  )
 }
 
 export default App;
